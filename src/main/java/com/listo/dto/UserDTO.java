@@ -1,5 +1,6 @@
 package com.listo.dto;
 
+import com.listo.model.User;
 import jakarta.validation.constraints.NotBlank;
 
 import java.io.Serial;
@@ -22,4 +23,8 @@ public record UserDTO(
 
     @Serial
     private static final long serialVersionUID = 1L;
+
+    public UserDTO(User user){
+        this(user.getId(), user.getName(), user.getLogin(), user.getPassword());
+    }
 }

@@ -1,6 +1,6 @@
 package com.listo.model;
 
-import com.listo.dto.UserDTO;
+import com.listo.dto.user.UserRequestDTO;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -30,11 +30,10 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(UserDTO userDTO){
-        this.id = userDTO.id();
-        this.name = userDTO.name();
-        this.login = userDTO.login();
-        this.password = userDTO.password();
+    public User(UserRequestDTO userRequestDTO) {
+        this.name = userRequestDTO.name();
+        this.login = userRequestDTO.login();
+        this.password = userRequestDTO.password();
     }
 
     public Long getId() {

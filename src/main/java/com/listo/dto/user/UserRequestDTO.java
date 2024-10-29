@@ -1,6 +1,5 @@
-package com.listo.dto;
+package com.listo.dto.user;
 
-import com.listo.model.User;
 import jakarta.validation.constraints.NotBlank;
 
 import java.io.Serial;
@@ -9,8 +8,7 @@ import java.io.Serializable;
 /**
  * DTO for {@link com.listo.model.User}
  */
-public record UserDTO(
-        Long id,
+public record UserRequestDTO(
 
         @NotBlank(message = "Name cannot be blank or empty")
         String name,
@@ -23,8 +21,4 @@ public record UserDTO(
 
     @Serial
     private static final long serialVersionUID = 1L;
-
-    public UserDTO(User user){
-        this(user.getId(), user.getName(), user.getLogin(), user.getPassword());
-    }
 }

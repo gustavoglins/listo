@@ -1,5 +1,6 @@
 package com.listo.dto.user;
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
 import java.io.Serial;
@@ -19,6 +20,7 @@ public record UserRequestDTO(
         String login,
 
         @NotBlank(message = "Password cannot be blank or empty")
+        @Min(8)
         String password) implements Serializable {
 
     @Serial

@@ -1,5 +1,6 @@
 package com.listo.exceptions.handle;
 
+import com.listo.exceptions.EmailAlreadyRegisteredException;
 import com.listo.exceptions.TaskNotFoundException;
 import com.listo.exceptions.UserNotFoundException;
 import com.listo.exceptions.response.ExceptionResponse;
@@ -34,6 +35,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<ExceptionResponse> handleUserNotFoundExceptions(UserNotFoundException exception, WebRequest request) {
         return buildResponse(exception, HttpStatus.NOT_FOUND, request);
+    }
+
+    @ExceptionHandler(EmailAlreadyRegisteredException.class)
+    public ResponseEntity<ExceptionResponse> handleEmailAlreadyRegisteredException(EmailAlreadyRegisteredException exception, WebRequest request){
+        return buildResponse(exception, HttpStatus.BAD_REQUEST, request);
     }
 
     // ------------------------------------------------- Task Exceptions -----------------------------------------------

@@ -2,6 +2,7 @@ package com.listo.services;
 
 import com.listo.dto.user.UserRequestDTO;
 import com.listo.dto.user.UserResponseDTO;
+import com.listo.exceptions.EmailAlreadyRegisteredException;
 import com.listo.exceptions.UserNotFoundException;
 import com.listo.model.user.User;
 import com.listo.repositories.UserRepository;
@@ -21,8 +22,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponseDTO create(UserRequestDTO requestDTO) {
-        User newUser = new User(requestDTO);
-        return new UserResponseDTO(repository.save(newUser));
+        boolean isEmailExiting = repository.findByLogin(requestDTO.login());
+        if (isEmailExiting) {
+            throw new EmailAlreadyRegisteredException("This email is already being used. Please enter a different email.");
+        } else {
+            User newUser = new User(requestDTO);
+            return new UserResponseDTO(repository.save(newUser));
+        }
     }
 
     @Override

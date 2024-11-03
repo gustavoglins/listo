@@ -28,14 +28,21 @@
     </scm>
     <properties>
         <java.version>21</java.version>
+        <springdoc.version>2.6.0</springdoc.version>
     </properties>
     <dependencies>
+
+        <!-- Dependency for Spring Hateoas -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-hateoas</artifactId>
+        </dependency>
 
         <!-- Dependency for Spring Doc -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>2.6.0</version>
+            <version>${springdoc.version}</version>
         </dependency>
 
         <!-- Dependency for Spring JPA -->

@@ -44,8 +44,7 @@ public class UserServiceImpl implements UserService {
     public UserResponseDTO findById(Long id) {
         Optional<User> optionalUser = repository.findById(id);
         if (optionalUser.isPresent()) {
-            User selectedUser = optionalUser.get();
-            return new UserResponseDTO(selectedUser);
+            return new UserResponseDTO(optionalUser.get());
         } else {
             throw new RuntimeException("User not found"); //TODO: create a custom exception for this case
         }

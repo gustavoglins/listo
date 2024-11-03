@@ -15,6 +15,8 @@ import java.io.Serializable;
 
 public record TaskRequestDTO(
 
+        Long id,
+
         @NotBlank(message = "Task user cannot be blank or empty")
         User user,
 

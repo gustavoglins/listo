@@ -5,6 +5,9 @@ import com.listo.dto.user.UserResponseDTO;
 import com.listo.services.UserService;
 import com.listo.utils.CustomMediaType;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -32,13 +35,13 @@ public class UserController {
             description = "Create a new user",
             tags = {"User Management"},
             responses = {
-                    @ApiResponse(description = "Created", responseCode = "201"),
-                    @ApiResponse(description = "Bad Request", responseCode = "400"),
-                    @ApiResponse(description = "Unauthorized", responseCode = "401"),
-                    @ApiResponse(description = "Forbidden", responseCode = "403"),
-                    @ApiResponse(description = "Conflict", responseCode = "409"),
-                    @ApiResponse(description = "Unprocessable Entity", responseCode = "422"),
-                    @ApiResponse(description = "Internal Server Error", responseCode = "501")
+                    @ApiResponse(description = "Created", responseCode = "201", content = @Content(schema = @Schema(implementation = UserResponseDTO.class))),
+                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content()),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content()),
+                    @ApiResponse(description = "Forbidden", responseCode = "403", content = @Content()),
+                    @ApiResponse(description = "Conflict", responseCode = "409", content = @Content()),
+                    @ApiResponse(description = "Unprocessable Entity", responseCode = "422", content = @Content()),
+                    @ApiResponse(description = "Internal Server Error", responseCode = "501", content = @Content())
             }
     )
     public ResponseEntity<UserResponseDTO> create(@RequestBody @Valid UserRequestDTO requestDTO) {
@@ -53,14 +56,14 @@ public class UserController {
             description = "Update a user",
             tags = {"User Management"},
             responses = {
-                    @ApiResponse(description = "Ok", responseCode = "200"),
-                    @ApiResponse(description = "Bad Request", responseCode = "400"),
-                    @ApiResponse(description = "Unauthorized", responseCode = "401"),
-                    @ApiResponse(description = "Forbidden", responseCode = "403"),
-                    @ApiResponse(description = "Not Found", responseCode = "404"),
-                    @ApiResponse(description = "Conflict", responseCode = "409"),
-                    @ApiResponse(description = "Unprocessable Entity", responseCode = "422"),
-                    @ApiResponse(description = "Internal Server Error", responseCode = "501")
+                    @ApiResponse(description = "Ok", responseCode = "200", content = @Content(schema = @Schema(implementation = UserResponseDTO.class))),
+                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content()),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content()),
+                    @ApiResponse(description = "Forbidden", responseCode = "403", content = @Content()),
+                    @ApiResponse(description = "Not Found", responseCode = "404", content = @Content()),
+                    @ApiResponse(description = "Conflict", responseCode = "409", content = @Content()),
+                    @ApiResponse(description = "Unprocessable Entity", responseCode = "422", content = @Content()),
+                    @ApiResponse(description = "Internal Server Error", responseCode = "501", content = @Content())
             }
     )
     public ResponseEntity<UserResponseDTO> update(@RequestBody @Valid UserRequestDTO requestDTO) {
@@ -75,11 +78,11 @@ public class UserController {
             description = "Find a user by ID",
             tags = {"User Management"},
             responses = {
-                    @ApiResponse(description = "Ok", responseCode = "200"),
-                    @ApiResponse(description = "Unauthorized", responseCode = "401"),
-                    @ApiResponse(description = "Forbidden", responseCode = "403"),
-                    @ApiResponse(description = "Not Found", responseCode = "404"),
-                    @ApiResponse(description = "Internal Server Error", responseCode = "501")
+                    @ApiResponse(description = "Ok", responseCode = "200", content = @Content(schema = @Schema(implementation = UserResponseDTO.class))),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content()),
+                    @ApiResponse(description = "Forbidden", responseCode = "403", content = @Content()),
+                    @ApiResponse(description = "Not Found", responseCode = "404", content = @Content()),
+                    @ApiResponse(description = "Internal Server Error", responseCode = "501", content = @Content())
             }
     )
     public ResponseEntity<UserResponseDTO> findById(@PathVariable long id) {
@@ -93,10 +96,14 @@ public class UserController {
             description = "List all registered users",
             tags = {"User Management"},
             responses = {
-                    @ApiResponse(description = "Ok", responseCode = "200"),
-                    @ApiResponse(description = "Unauthorized", responseCode = "401"),
-                    @ApiResponse(description = "Forbidden", responseCode = "403"),
-                    @ApiResponse(description = "Internal Server Error", responseCode = "5001")
+                    @ApiResponse(description = "Ok", responseCode = "200",
+                            content = @Content(
+                                    mediaType = CustomMediaType.APPLICATION_JSON,
+                                    array = @ArraySchema(schema = @Schema(implementation = UserResponseDTO.class))
+                            )),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content()),
+                    @ApiResponse(description = "Forbidden", responseCode = "403", content = @Content()),
+                    @ApiResponse(description = "Internal Server Error", responseCode = "5001", content = @Content())
             }
     )
     public ResponseEntity<List<UserResponseDTO>> listAll() {
@@ -110,11 +117,11 @@ public class UserController {
             description = "Delete a user by ID",
             tags = {"User Management"},
             responses = {
-                    @ApiResponse(description = "No Content", responseCode = "204"),
-                    @ApiResponse(description = "Unauthorized", responseCode = "401"),
-                    @ApiResponse(description = "Forbidden", responseCode = "403"),
-                    @ApiResponse(description = "Not Found", responseCode = "404"),
-                    @ApiResponse(description = "Internal Server Error", responseCode = "501")
+                    @ApiResponse(description = "No Content", responseCode = "204", content = @Content()),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content()),
+                    @ApiResponse(description = "Forbidden", responseCode = "403", content = @Content()),
+                    @ApiResponse(description = "Not Found", responseCode = "404", content = @Content()),
+                    @ApiResponse(description = "Internal Server Error", responseCode = "501", content = @Content())
             }
     )
     public void delete(@PathVariable long id) {

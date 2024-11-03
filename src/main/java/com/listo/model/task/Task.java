@@ -1,11 +1,12 @@
 package com.listo.model.task;
 
+import com.listo.dto.task.TaskRequestDTO;
 import com.listo.model.user.User;
 import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -36,9 +37,18 @@ public class Task implements Serializable {
     private TaskPriority priority;
 
     @Column(name = "creation_date", nullable = false)
-    private Date creationDate;
+    private LocalDateTime creationDate;
 
     public Task() {
+    }
+
+    public Task(TaskRequestDTO requestDTO, LocalDateTime creationDate) {
+        this.user = requestDTO.user();
+        this.title = requestDTO.title();
+        this.description = requestDTO.description();
+        this.status = requestDTO.status();
+        this.priority = requestDTO.priority();
+        this.creationDate = creationDate;
     }
 
     public User getUser() {
@@ -85,11 +95,11 @@ public class Task implements Serializable {
         this.priority = priority;
     }
 
-    public Date getCreationDate() {
+    public LocalDateTime getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -110,11 +120,11 @@ public class Task implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return Objects.equals(id, task.id) && Objects.equals(title, task.title) && Objects.equals(description, task.description) && status == task.status && priority == task.priority && Objects.equals(creationDate, task.creationDate);
+        return Objects.equals(id, task.id) && Objects.equals(user, task.user) && Objects.equals(title, task.title) && Objects.equals(description, task.description) && status == task.status && priority == task.priority && Objects.equals(creationDate, task.creationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, description, status, priority, creationDate);
+        return Objects.hash(id, user, title, description, status, priority, creationDate);
     }
 }

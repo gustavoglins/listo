@@ -4,11 +4,13 @@ import com.listo.dto.task.TaskRequestDTO;
 import com.listo.dto.task.TaskResponseDTO;
 import com.listo.model.task.Task;
 import com.listo.repositories.TaskRepository;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository repository;

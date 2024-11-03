@@ -1,5 +1,6 @@
 package com.listo.dto.user;
 
+import com.listo.model.user.User;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
@@ -7,7 +8,7 @@ import java.io.Serial;
 import java.io.Serializable;
 
 /**
- * DTO for {@link com.listo.model.User}
+ * DTO for {@link User}
  */
 public record UserRequestDTO(
 

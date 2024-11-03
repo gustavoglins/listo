@@ -2,13 +2,13 @@ package com.listo.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.listo.model.User;
+import com.listo.model.user.User;
 
 import java.io.Serial;
 import java.io.Serializable;
 
 /**
- * DTO for {@link com.listo.model.User}
+ * DTO for {@link User}
  */
 @JsonPropertyOrder({"id", "name", "login", "password"})
 public record UserResponseDTO(

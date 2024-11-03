@@ -1,6 +1,6 @@
 package com.listo.repositories;
 
-import com.listo.model.User;
+import com.listo.model.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -2,7 +2,7 @@ package com.listo.services;
 
 import com.listo.dto.user.UserRequestDTO;
 import com.listo.dto.user.UserResponseDTO;
-import com.listo.model.User;
+import com.listo.model.user.User;
 import com.listo.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.listo.model;
+package com.listo.model.user;
 
 import com.listo.dto.user.UserRequestDTO;
 import jakarta.persistence.*;

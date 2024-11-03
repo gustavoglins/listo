@@ -2,6 +2,7 @@ package com.listo.services;
 
 import com.listo.dto.user.UserRequestDTO;
 import com.listo.dto.user.UserResponseDTO;
+import com.listo.exceptions.UserNotFoundException;
 import com.listo.model.user.User;
 import com.listo.repositories.UserRepository;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,7 @@ public class UserServiceImpl implements UserService {
 
             return new UserResponseDTO(repository.save(selectedUser));
         } else {
-            throw new RuntimeException("User not found"); //TODO: create a custom exception for this case
+            throw new UserNotFoundException("User not found");
         }
     }
 
@@ -46,7 +47,7 @@ public class UserServiceImpl implements UserService {
         if (optionalUser.isPresent()) {
             return new UserResponseDTO(optionalUser.get());
         } else {
-            throw new RuntimeException("User not found"); //TODO: create a custom exception for this case
+            throw new UserNotFoundException("User not found");
         }
     }
 
@@ -64,7 +65,7 @@ public class UserServiceImpl implements UserService {
         if (optionalUser.isPresent()) {
             repository.deleteById(id);
         } else {
-            throw new RuntimeException("User not found"); //TODO: create a custom exception for this case
+            throw new UserNotFoundException("User not found");
         }
     }
 }

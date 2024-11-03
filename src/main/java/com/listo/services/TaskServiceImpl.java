@@ -2,6 +2,7 @@ package com.listo.services;
 
 import com.listo.dto.task.TaskRequestDTO;
 import com.listo.dto.task.TaskResponseDTO;
+import com.listo.exceptions.TaskNotFoundException;
 import com.listo.model.task.Task;
 import com.listo.repositories.TaskRepository;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,7 @@ public class TaskServiceImpl implements TaskService {
 
             return new TaskResponseDTO(repository.save(selectedTask));
         } else {
-            throw new RuntimeException("Task not found"); //TODO: create a custom exception for this case
+            throw new TaskNotFoundException("Task not found");
         }
     }
 
@@ -49,7 +50,7 @@ public class TaskServiceImpl implements TaskService {
         if (optionalTask.isPresent()) {
             return new TaskResponseDTO(optionalTask.get());
         } else {
-            throw new RuntimeException("Task not found"); //TODO: create a custom exception for this case
+            throw new TaskNotFoundException("Task not found");
         }
     }
 
@@ -67,7 +68,7 @@ public class TaskServiceImpl implements TaskService {
         if (optionalTask.isPresent()) {
             repository.deleteById(id);
         } else {
-            throw new RuntimeException("Task not found"); //TODO: create a custom exception for this case
+            throw new TaskNotFoundException("Task not found");
         }
     }
 }

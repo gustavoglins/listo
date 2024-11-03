@@ -21,11 +21,13 @@ public class Task {
     @Column(nullable = false)
     private String title;
 
+    @Column(nullable = false)
     private String description;
 
     @Column(nullable = false)
     private TaskStatus status;
 
+    @Column(nullable = false)
     private TaskPriority priority;
 
     @Column(name = "creation_date", nullable = false)

@@ -20,8 +20,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponseDTO create(UserRequestDTO requestDTO) {
-        User createdUser = repository.save(new User(requestDTO));
-        return new UserResponseDTO(createdUser);
+        User newUser = new User(requestDTO);
+        return new UserResponseDTO(repository.save(newUser));
     }
 
     @Override
